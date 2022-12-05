@@ -1,34 +1,27 @@
-from random import random
-
 import pandas
 
 speed_for_every_centimeter = .005
-from openpyxl import load_workbook
+speed_for_every_bmi = .4
 
 
-def mps_calculate(race_meters, time_took_last_year, past_height, height):
+def mps_calculate(race_meters, time_took_last_year, past_height, height, past_bmi, bmi):
     mps = race_meters/time_took_last_year
     diff_height = height - past_height
     mps += diff_height*speed_for_every_centimeter
+    if 18.5 <= past_bmi < 25:
+        if bmi < 18.5 or 25 < bmi:
+            mps -= speed_for_every_bmi
+        if bmi > 30:
+            mps -= speed_for_every_bmi
+    else:
+        if 18.5 <= bmi < 25:
+            mps += speed_for_every_bmi
     return mps
-
-# player1_name = input('First Runner name: ')
-# player1_race_last_year = int(input('How many meters race he/she ran last year: '))
-# player1_time_took_last_year = float(input('How much time did he/she took last year (in seconds): '))
-# player1_past_height = float(input('His/her past year height (in centimeter): '))
-# player1_height = float(input('His/her current height (in centimeter): '))
-#
-# player2_name = input('Second Runner name: ')
-# player2_race_last_year = int(input('How many meters race he/she ran last year: '))
-# player2_time_took_last_year = float(input('How much time did he/she took last year (in seconds): '))
-# player2_past_height = float(input('His/her past year height (in centimeter): '))
-# player2_height = float(input('His/her current height (in centimeter): '))
-
 
 
 players_data_file = pandas.read_excel('runner_data.xlsx', sheet_name='Sheet1')
-p1_data = list(players_data_file['Ishan'])
-p2_data = list(players_data_file['Usain'])
+p1_data = list(players_data_file[input('First person Name: ')])
+p2_data = list(players_data_file[input('Second person Name: ')])
 player1_mps = mps_calculate(*p1_data)
 player2_mps = mps_calculate(*p2_data)
 
