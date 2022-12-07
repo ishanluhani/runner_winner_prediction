@@ -1,14 +1,21 @@
 import pandas
 
 name = input('Your Name: ')
-race = int(input('Race you participate in last year (meters): '))
-time = float(input('How much time it took you to complete that race (sec): '))
-last_weight = int(input('What was your weight last year (kg): '))
+age = int(input('Your Age: '))
+gender = input('Your gender (m or f): ').upper()
 weight = int(input('What is your current weight (kg): '))
-last_height = int(input('What was your height last year (cm): '))/100
 height = int(input('What is your current height (cm): '))/100
-past_bmi = last_weight/(last_height*last_height)
-current_bmi = weight/float(height*height)
-data = pandas.read_excel('runner_data.xlsx', 'Sheet1')
-data[name] = [race, time, last_height*100, height*100, past_bmi, current_bmi]
-data.to_excel('runner_data.xlsx', index=False)
+current_bmi = weight/(height*height)
+if gender == 'M':
+    BFP = 1.51*current_bmi-.7*age-2.2
+    if 18 <= BFP <= 24:
+        print('According to the American Council of exercise, Your body fat comes to Average Category, You need to improve, thats why you are not eligible')
+    if BFP > 24:
+        print('According to the American Council of exercise, Your body fat comes to Obuse Category, thats why you are not eligible')
+else:
+    BFP = 1.51*current_bmi-.7*age+1.4
+    if 25 <= BFP <= 31:
+        print('According to the American Council of exercise, Your body fat comes to Average Category, You need to improve, thats why you are not eligible')
+    if BFP > 31:
+        print('According to the American Council of exercise, Your body fat comes to Obuse Category, thats why you are not eligible')
+print(BFP)
