@@ -4,7 +4,7 @@ speed_for_every_centimeter = .005
 speed_for_every_bmi = .4
 
 
-def mps_calculate(race_meters, time_took_last_year, past_height, height, past_bmi, bmi):
+def mps_calculate(age, gender, race_meters, time_took_last_year, past_height, height, past_bmi, bmi, bfp):
     mps = race_meters/time_took_last_year
     diff_height = height - past_height
     mps += diff_height*speed_for_every_centimeter
@@ -18,39 +18,39 @@ def mps_calculate(race_meters, time_took_last_year, past_height, height, past_bm
             mps += speed_for_every_bmi
     return mps
 
-
-players_data_file = pandas.read_excel('runner_data.xlsx', sheet_name='Sheet1')
-p1_data = list(players_data_file[input('First person Name: ')])
-p2_data = list(players_data_file[input('Second person Name: ')])
-player1_mps = mps_calculate(*p1_data)
-player2_mps = mps_calculate(*p2_data)
-
 from turtle import *
 
+def visualize(name1, name2):
+    players_data_file = pandas.read_excel('runner_data.xlsx', sheet_name='Sheet1')
+    p1_data = list(players_data_file[name1])
+    p2_data = list(players_data_file[name2])
+    player1_mps = mps_calculate(*p1_data)
+    player2_mps = mps_calculate(*p2_data)
 
-speed(10)
 
-penup()
+    speed(10)
 
-# (1)
-trevor = Turtle()
-trevor.color('red')
-trevor.shape('turtle')
+    penup()
 
-trevor.penup()
-trevor.goto(-150, -250)
-trevor.left(90)
-trevor.pendown()
+    # (1)
+    trevor = Turtle()
+    trevor.color('red')
+    trevor.shape('turtle')
 
-bruce = Turtle()
-bruce.color('blue')
-bruce.shape('turtle')
+    trevor.penup()
+    trevor.goto(-150, -250)
+    trevor.left(90)
+    trevor.pendown()
 
-bruce.penup()
-bruce.goto(150, -250)
-bruce.left(90)
-bruce.pendown()
+    bruce = Turtle()
+    bruce.color('blue')
+    bruce.shape('turtle')
 
-for turn in range(1000):
-    trevor.forward(player1_mps)
-    bruce.forward(player2_mps)
+    bruce.penup()
+    bruce.goto(150, -250)
+    bruce.left(90)
+    bruce.pendown()
+
+    for turn in range(1000):
+        trevor.forward(player1_mps)
+        bruce.forward(player2_mps)
