@@ -17,7 +17,6 @@ def submit():
                           message='Is your doctor currently prescribing drugs (for example, water pills) for your blood pressure or heart condition?'))
     answers.append(askyesno(title='Survey',
                           message='Do you know of any other reason why you should not do physical activity?'))
-    print('fg')
     if any(answers):
         return False
     return True

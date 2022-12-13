@@ -1,3 +1,5 @@
+import time
+
 import pandas
 
 speed_for_every_centimeter = .005
@@ -51,6 +53,21 @@ def visualize(name1, name2):
     bruce.left(90)
     bruce.pendown()
 
+    goto(-100, 210)
+    hideturtle()
+
     for turn in range(1000):
+        if trevor.pos()[1] > 230:
+            color('red')
+            write(f'{name1} Won!!', font=("Verdana",
+                                    20, "normal"))
+            time.sleep(3)
+            quit()
+        elif bruce.pos()[1] > 230:
+            color('blue')
+            write(f'{name1} Won!!', font=("Verdana",
+                                      20, "normal"))
+            time.sleep(3)
+            quit()
         trevor.forward(player1_mps)
         bruce.forward(player2_mps)
