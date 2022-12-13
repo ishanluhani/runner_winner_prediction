@@ -4,7 +4,7 @@ speed_for_every_centimeter = .005
 speed_for_every_bmi = .4
 
 
-def mps_calculate(age, gender, race_meters, time_took_last_year, past_height, height, past_bmi, bmi, bfp):
+def mps_calculate(age, gender, race_meters, time_took_last_year, past_height, height, past_bmi, bmi):
     mps = race_meters/time_took_last_year
     diff_height = height - past_height
     mps += diff_height*speed_for_every_centimeter
