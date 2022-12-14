@@ -15,6 +15,8 @@ def add():
     else:
         race = int(race)
     if race != 0: time = int(input('How much time you took to complete that race (sec): '))
+    else:
+        time = 0
     past_weight = int(input('What is your last year weight (kg): '))
     weight = int(input('What is your current weight (kg): '))
     past_height = int(input('What is your last year height (cm): '))/100
@@ -29,9 +31,10 @@ answer = False
 def check_eligiblity():
     global answer
     name = input('Your Name: ')
-    data_ = pandas.read_excel('runner_data.xlsx', index_col='Name')[name]
+    data_ = list(pandas.read_excel('runner_data.xlsx')[name])
     age = data_[0]
     gender = data_[1]
+    height = data_[5]
     current_bmi = data_[7]
     bfp_done = True
     check_dict = {True: 'Eligible', False: 'Not Eligible'}
@@ -62,11 +65,9 @@ def check_eligiblity():
     Button(root, text='Start PARQ Test', command=sub).pack()
     root.mainloop()
     if not all([bfp_done, answer]):
-        final = False
         print('Not Eligible')
     else:
-        final = True
         print('Eligible')
     data = pandas.read_excel('elegiblity records.xlsx', index_col='Name')
-    data[name] = [check_dict[bfp_done], check_dict[answer], check_dict[final]]
+    data[name] = [check_dict[bfp_done], check_dict[answer]]
     data.to_excel('elegiblity records.xlsx')
