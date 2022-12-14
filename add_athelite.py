@@ -10,7 +10,7 @@ def add():
         race = input('which Race you participated last year (Relay, 100m, 200m, 400m, Notselected) (Do Not include "m"): ').lower()
     except:
         print('Invalid Data')
-        pass
+        
     if race == 'relay':
         race = 100
     elif race == 'notselected':

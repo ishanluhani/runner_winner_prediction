@@ -14,7 +14,7 @@ def submit():
     answers.append(askyesno(title='Survey',
                           message='Do you have a bone or joint problem that could be made worse by a change in your physical activity?'))
     answers.append(askyesno(title='Survey',
-                          message='Is your doctor currently prescribing drugs (for example, water pills) for your blood pressure or heart condition?'))
+                          message='Is your doctor currently prescribing medicine (for example, water pills) for your blood pressure or heart condition?'))
     answers.append(askyesno(title='Survey',
                           message='Do you know of any other reason why you should not do physical activity?'))
     if any(answers):

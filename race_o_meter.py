@@ -7,7 +7,10 @@ speed_for_every_bmi = .4
 
 
 def mps_calculate(age, gender, race_meters, time_took_last_year, past_height, height, past_bmi, bmi):
-    mps = race_meters/time_took_last_year
+    try:
+        mps = race_meters/time_took_last_year
+    except:
+        mps = height/2
     diff_height = height - past_height
     mps += diff_height*speed_for_every_centimeter
     if 18.5 <= past_bmi < 25:
@@ -55,19 +58,19 @@ def visualize(name1, name2):
 
     goto(-100, 210)
     hideturtle()
+    move = True
 
-    for turn in range(1000):
+    while True:
         if trevor.pos()[1] > 230:
             color('red')
             write(f'{name1} Won!!', font=("Verdana",
                                     20, "normal"))
-            time.sleep(3)
-            quit()
+            move = False
         elif bruce.pos()[1] > 230:
             color('blue')
             write(f'{name2} Won!!', font=("Verdana",
-                                      20, "normal"))
-            time.sleep(3)
-            quit()
-        trevor.forward(player1_mps)
-        bruce.forward(player2_mps)
+                                  20, "normal"))
+            move = False
+        if move:
+            trevor.forward(player1_mps)
+            bruce.forward(player2_mps)

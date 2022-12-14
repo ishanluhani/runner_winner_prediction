@@ -23,7 +23,7 @@ while True:
         try: data[name]
         except: print('Name not found')
         try: data.loc[f, name] = int(input('What is new value: '))
-        except: data.loc[f, name] = input('What is new value: ')
+        except: data.loc[f, name] = int(input('What is new value: '))
         data.to_excel('runner_data.xlsx')
     elif a == '2':
         try:
