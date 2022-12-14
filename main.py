@@ -58,5 +58,7 @@ while True:
             print('Name not Found')
 
     elif a == '6':
+        print('This project is made by Ishan Luhani')
+        print('Thank You')
         quit()
     print('-'*50)

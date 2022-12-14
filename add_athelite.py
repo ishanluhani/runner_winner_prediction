@@ -19,9 +19,9 @@ def add():
         race = int(race)
     if race != 0: time = int(input('How much time you took to complete that race (sec): '))
     else: time = 0
-    past_weight = int(input('What is your last year weight (kg): '))
+    past_weight = int(input('What was your last year weight (kg): '))
     weight = int(input('What is your current weight (kg): '))
-    past_height = int(input('What is your last year height (cm): '))/100
+    past_height = int(input('What was your last year height (cm): '))/100
     height = int(input('What is your current height (cm): '))/100
     past_bmi = past_weight/(past_height*past_height)
     current_bmi = weight/(height*height)
