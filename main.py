@@ -22,8 +22,9 @@ while True:
         f = input(f'Which feature to modify {list(data.index)} (write whole correctly): ')
         try: data[name]
         except: print('Name not found')
-        try: data.loc[f, name] = int(input('What is new value: '))
-        except: data.loc[f, name] = int(input('What is new value: '))
+        abc = int(input('What is new value: '))
+        try: data.loc[f, name] = float(abc)
+        except: data.loc[f, name] = abc
         data.to_excel('runner_data.xlsx')
     elif a == '2':
         try:
